@@ -10,15 +10,24 @@ in this game"""
 import random
 
 class Player:
+    def __init__(self):
+        self.their_last_move = random.choice(moves)
+        self.my_last_move = random.choice(moves)
+
     def move(self):
         return 'rock'
 
     def learn(self, my_move, their_move):
-        pass
+        self.their_last_move = their_move
+        self.my_last_move = my_move
 
 class RandomPlayer(Player):
     def move(self):
         return random.choice(moves)
+
+class ReflectPlayer(Player):
+    def move(self):
+        return self.their_last_move
 
 class HumanPlayer(Player):
     def move(self):
@@ -71,5 +80,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(RandomPlayer(), HumanPlayer())
+    game = Game(ReflectPlayer(), HumanPlayer())
     game.play_game()
