@@ -29,10 +29,15 @@ class ReflectPlayer(Player):
     def move(self):
         return self.their_last_move
 
+class CyclePlayer(Player):
+    def move(self):
+        pos = moves.index(self.my_last_move)
+        return moves[(pos +1)%3]
+
 class HumanPlayer(Player):
     def move(self):
         while True:
-            choice = input("What is your move (rock, paper, or scissors? ")
+            choice = input("What is your move (rock, paper, or scissors)? ")
             if choice in moves:
                 return choice
             else:
@@ -80,5 +85,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(ReflectPlayer(), HumanPlayer())
+    game = Game(CyclePlayer(), HumanPlayer())
     game.play_game()
