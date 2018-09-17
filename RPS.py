@@ -22,19 +22,35 @@ class Player:
         self.my_last_move = my_move
 
 class RandomPlayer(Player):
+    def __init__(self):
+        super().__init__()
+        self.name = "Random(PC)"
+
     def move(self):
         return random.choice(moves)
 
 class ReflectPlayer(Player):
+    def __init__(self):
+        super().__init__()
+        self.name = "Reflect(PC)"
+
     def move(self):
         return self.their_last_move
 
 class CyclePlayer(Player):
+    def __init__(self):
+        super().__init__()
+        self.name = "Cycle(PC)"
+
     def move(self):
         pos = moves.index(self.my_last_move)
         return moves[(pos +1)%3]
 
 class HumanPlayer(Player):
+    def __init__(self):
+        super().__init__()
+        self.name = "Human"
+
     def move(self):
         while True:
             choice = input("What is your move (rock, paper, or scissors)? ")
@@ -59,16 +75,16 @@ class Game:
     def play_round(self):
         move1 = self.p1.move()
         move2 = self.p2.move()
-        print(f"Player 1: {move1}  Player 2: {move2}")
+        print(f"{self.p1.name} picks: {move1}  {self.p2.name} picks: {move2}")
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
         self.show_winner(move1, move2)
 
     def show_winner(self, p1_move, p2_move):
         if beats(p1_move, p2_move) == True:
-            print(f"{p1_move} beats {p2_move}, Player 1 wins!")
+            print(f"{p1_move} beats {p2_move}, {self.p1.name} wins!")
         elif beats(p2_move, p1_move) == True:
-            print(f"{p2_move} beats {p1_move}, Player 2 wins!")
+            print(f"{p2_move} beats {p1_move}, {self.p2.name} wins!")
         else:
             if p1_move == p2_move:
                 print(f"Both players picked {p1_move}, game is a tie!")
