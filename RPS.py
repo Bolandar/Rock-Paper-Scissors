@@ -13,6 +13,7 @@ class Player:
     def __init__(self):
         self.their_last_move = random.choice(moves)
         self.my_last_move = random.choice(moves)
+        self.name = "PC"
 
     def move(self):
         return 'rock'
@@ -101,5 +102,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(CyclePlayer(), HumanPlayer())
+    game = Game(RandomPlayer(), HumanPlayer())
     game.play_game()
