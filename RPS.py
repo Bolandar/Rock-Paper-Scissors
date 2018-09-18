@@ -55,8 +55,8 @@ class HumanPlayer(Player):
     def move(self):
         while True:
             choice = input("What is your move (rock, paper, or scissors)? ")
-            if choice in moves:
-                return choice
+            if (choice.lower()) in moves:
+                return (choice.lower())
             else:
                 print (f"{choice} is not a valid choice, try again.")
 
