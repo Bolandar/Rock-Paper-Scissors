@@ -1,5 +1,8 @@
 
 import random
+import colorama
+colorama.init(strip=False)
+
 # !/usr/bin/env python3
 
 # This program plays a game of Rock, Paper, Scissors between two Players,
@@ -125,19 +128,24 @@ class Game:
 # Initiates game and plays defined number of rounds
 
     def play_game(self):
-        print("******************************************************")
+        print(colorama.Fore.CYAN + "*****************************************"
+              "*************")
         print("***                                                ***")
         print("***        Welcome to Rock, Paper, Scissors!       ***")
         print("***                                                ***")
-        print("******************************************************\n\n")
+        print("******************************************************\n\n"
+              + colorama.Style.RESET_ALL)
         for round in range(5):
-            print(f"Round {round}:")
+            print(colorama.Fore.GREEN + f"Round {round}:"
+                  + colorama.Style.RESET_ALL)
             print("------------------------------------------------------")
             self.play_round()
-        print("======================================================")
+        print(colorama.Fore.RED + "=========================================="
+              "============" + colorama.Style.RESET_ALL)
         print(f"      Final Score:  {self.p1.name} - {self.p1_score}    "
               f"{self.p2.name} - {self.p2_score}")
-        print("======================================================")
+        print(colorama.Fore.RED + "=========================================="
+              "============" + colorama.Style.RESET_ALL)
 
 
 if __name__ == '__main__':
